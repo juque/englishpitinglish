@@ -57,6 +57,14 @@ class NotesController < ApplicationController
     end
   end
 
+  def tagged
+    if params[:tag].present?
+      @notes = Note.tagged_with(params[:tag])
+    else
+      @notes = Note.all
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_note
@@ -65,6 +73,6 @@ class NotesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def note_params
-      params.require(:note).permit(:title, :content)
+      params.require(:note).permit(:title, :content, :tag_list)
     end
 end

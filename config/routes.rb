@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
   resources :notes
-  resources :entries
-  get 'home/index'
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  # Defines the root path route ("/")
+  get '/tagged', to: "notes#tagged", as: :tagged
+
+  resources :entries
+
+  get 'home/index'
+
   root "home#index"
 end
